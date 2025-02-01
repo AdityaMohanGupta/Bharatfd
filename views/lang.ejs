@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Select Language</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --primary-hover: #357abd;
+            --secondary-color: #6c63ff;
+            --bg-color: #f5f7fa;
+            --text-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .lang-selection {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .lang-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .lang-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .lang-button:hover {
+            color: white;
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        .lang-button:hover:before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 1.5rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .faq-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .faq-item h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .lang-selection {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lang-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .faq-item {
+                padding: 1rem;
+            }
+
+            .faq-item h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FAQ - Select Language</h1>
+        
+        <div class="lang-selection">
+            <button class="lang-button" onclick="window.location.href='/lan?lang=en'">English</button>
+            <button class="lang-button" onclick="window.location.href='/lan?lang=hi'">हिंदी</button>
+            <button class="lang-button" onclick="window.location.href='/lan?lang=bn'">বাংলা</button>
+        </div>
+
+        <div class="faq-list">
+            <% faqs.forEach(function(faq) { %>
+                <div class="faq-item">
+                    <h3><%= faq.question %></h3>
+                    <p><%= faq.answer %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

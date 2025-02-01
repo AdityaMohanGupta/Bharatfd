@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Admin Panel</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --danger-color: #e74c3c;
+            --gray-light: #f5f6fa;
+            --gray-medium: #e9ecef;
+            --spacing: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--gray-light);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .add-faq-form {
+            background: white;
+            padding: var(--spacing);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-content {
+            padding: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer {
+            color: #444;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .faq-actions {
+            border-top: 1px solid var(--gray-medium);
+            padding: 1rem 1.5rem;
+            background-color: var(--gray-light);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .edit-form {
+            display: none;
+            padding: 1.5rem;
+            background-color: var(--gray-light);
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        .faq-item.editing .edit-form {
+            display: block;
+        }
+
+        .edit-button {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .edit-button:hover {
+            background-color: #d68910;
+        }
+
+        .delete-button {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
+
+        .toggle-edit {
+            background: none;
+            border: 1px solid #ddd;
+            color: #666;
+        }
+
+        .toggle-edit:hover {
+            background-color: var(--gray-medium);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .faq-actions {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>FAQ Admin Panel</h1>
+
+    <h2>Add New FAQ</h2>
+    <form class="add-faq-form" action="/admin/add" method="POST">
+        <input type="text" name="question" placeholder="Enter your question" required>
+        <textarea name="answer" placeholder="Enter the answer" required></textarea>
+        <button type="submit">Add FAQ</button>
+    </form>
+
+    <h2>All FAQs</h2>
+    <div class="faq-list">
+        <% faqs.forEach(faq => { %>
+            <div class="faq-item">
+                <div class="faq-content">
+                    <div class="faq-question"><b>Q. </b>  <%= faq.question %></div>
+                    <div class="faq-answer"><b>Ans. </b>  <%= faq.answer %></div>
+                </div>
+                
+                <div class="faq-actions">
+                    <button class="toggle-edit" onclick="toggleEdit(this)">Edit FAQ</button>
+                    <form action="/admin/delete/<%= faq._id %>" method="POST" style="display: inline;">
+                        <button type="submit" class="delete-button">Delete FAQ</button>
+                    </form>
+                </div>
+
+                <form class="edit-form" action="/admin/edit/<%= faq._id %>" method="POST">
+                    <input type="text" name="question" value="<%= faq.question %>" required>
+                    <textarea name="answer" required><%= faq.answer %></textarea>
+                    <button type="submit" class="edit-button">Save Changes</button>
+                </form>
+            </div>
+        <% }); %>
+    </div>
+
+    <script>
+        function toggleEdit(button) {
+            const faqItem = button.closest('.faq-item');
+            faqItem.classList.toggle('editing');
+            button.textContent = faqItem.classList.contains('editing') ? 'Cancel Edit' : 'Edit FAQ';
+        }
+    </script>
+</body>
+</html>
