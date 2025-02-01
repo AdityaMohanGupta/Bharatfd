@@ -139,7 +139,13 @@ Response Example (in Hindi):
 - **Express.js** - Web framework used for routing and handling HTTP requests.
 - **MongoDB** - NoSQL database for storing FAQ data.
 - **Redis** - In-memory data store for caching translations to improve performance.
+
+## APIs & Services
+
 - **Google Translate API** - Service used for translating FAQs into multiple languages.
+
+## Libraries & Utilities
+
 - **dotenv** - Module for loading environment variables from a .env file.
 - **ioredis** - Redis client for Node.js to connect to Redis.
 - **google-translate-api-x** - Google Translate API client for translation services.
