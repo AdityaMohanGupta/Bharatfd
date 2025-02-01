@@ -8,13 +8,13 @@ BharatFD is a backend project for managing multilingual FAQs. This application a
 
 - [Project Overview](#project-overview)
 - [Installation Steps](#installation-steps)
-  - [Prerequisites](#prerequisites)
-  - [Install Dependencies](#install-dependencies)
-  - [Configure Environment Variables](#configure-environment-variables)
-  - [Run the Application](#run-the-application)
+  - [Prerequisites](##prerequisites)
+  - [Install Dependencies](##install-dependencies)
+  - [Configure Environment Variables](##configure-environment-variables)
+  - [Run the Application](##run-the-application)
 - [API Usage Examples](#api-usage-examples)
-  - [Add FAQ](#add-faq)
-  - [Fetch FAQs](#fetch-faqs)
+  - [Add FAQ](##add-faq)
+  - [Fetch FAQs](##fetch-faqs)
 - [Technologies Used](#technologies-used)
 
 ---
