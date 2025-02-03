@@ -82,7 +82,7 @@ Content-Type: application/json
 
 {
   "question": "What is BharatFD?",
-  "answer": "BharatFD is a platform to manage FAQs in multiple languages."
+  "answer": "BharatFD is a platform that assists users in finding and comparing fixed deposit (FD) schemes from various banks across India."
 }
 ```
 
@@ -94,15 +94,15 @@ Response Example:
   "faq": {
     "_id": "60c72b2f8d2fbd1aebcd1e9d",
     "question": "What is BharatFD?",
-    "answer": "BharatFD is a platform to manage FAQs in multiple languages.",
+    "answer": "BharatFD is a platform that assists users in finding and comparing fixed deposit (FD) schemes from various banks across India.",
     "translations": {
       "hi": {
         "question": "BharatFD क्या है?",
-        "answer": "BharatFD एक मंच है जहां बहुभाषी FAQs का प्रबंधन किया जाता है।"
+        "answer": "Bharatfd एक ऐसा मंच है जो भारत भर के विभिन्न बैंकों से फिक्स्ड डिपॉजिट (FD) योजनाओं को खोजने और तुलना करने में उपयोगकर्ताओं की सहायता करता है।"
       },
       "bn": {
-        "question": "BharatFD কী?",
-        "answer": "BharatFD একটি প্ল্যাটফর্ম যা বহু ভাষায় FAQs পরিচালনা করে।"
+        "question": "ভারতফডি কী?",
+        "answer": "ভরতফডি এমন একটি প্ল্যাটফর্ম যা ব্যবহারকারীদের ভারত জুড়ে বিভিন্ন ব্যাংক থেকে ফিক্সড ডিপোজিট (এফডি) স্কিমগুলি সন্ধান এবং তুলনা করতে সহায়তা করে।"
       }
     }
   }
@@ -125,7 +125,7 @@ Response Example (in Hindi):
 [
   {
     "question": "BharatFD क्या है?",
-    "answer": "BharatFD एक मंच है जहां बहुभाषी FAQs का प्रबंधन किया जाता है।"
+    "answer": "Bharatfd एक ऐसा मंच है जो भारत भर के विभिन्न बैंकों से फिक्स्ड डिपॉजिट (FD) योजनाओं को खोजने और तुलना करने में उपयोगकर्ताओं की सहायता करता है।"
   }
 ]
 ```
